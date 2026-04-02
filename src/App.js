@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import Alert from "./components/Alert";
-import { Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import TextForm from "./components/TextForm";
-
 
 function App() {
   const [mode, setMode] = useState("light"); // Whether dark mode is enabled or not
@@ -59,21 +58,22 @@ function App() {
         toggleMode={toggleMode}
       />
 
-
       <Alert alert={alert} />
       <div className="container">
-        <Routes>
-          <Route
-            path=""
-            element={
-              <TextForm
-                showAlert={showAlert}
-                heading="Enter the text to analyze below"
-                mode={mode}
-              />
-            }
-          />
-        </Routes>
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <TextForm
+                  showAlert={showAlert}
+                  heading="Enter the text to analyze below"
+                  mode={mode}
+                />
+              }
+            />
+          </Routes>
+        </Router>
       </div>
     </>
   );
